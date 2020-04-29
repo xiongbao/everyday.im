@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="description" content="我每天都很消极">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#38393e" id="themeColor">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="icon" type="image/png" href="./assets/logo.png">
+  <link rel="apple-touch-icon" type="image/png" href="./assets/logo.png">
+  <link rel="icon" type="image/png" sizes="144x144" href="./assets/logo.png">
+  <title>Every Day I'm ...</title>
+  <style>
+    @font-face {
+      font-family: 'SourceHanSerifTW';
+      src: url('./assets/font/SourceHanSerifTW.ttf') format('truetype');
+      font-weight: normal;
+      font-style: normal;
+    }
+    a,a:visited {
+      color: #5681e6;
+      text-decoration: none;
+    }
+    html,body {
+      height: 100%;
+      width: 100%;
+      margin: 0;
+      color: #03081a;
+      font-family: sans-serif;
+    }
+    body,h1 {
+      display: flex;
+      flex-direction: column;
+    }
+    h1 {
+      flex:1;
+      justify-content: center;
+      align-items: center;
+      margin: 0;
+      font-size: 14px;
+      font-weight: normal;
+      text-align: center;
+    }
+    h1 small {
+      font-style: normal;
+      color: #878b99;
+    }
+    h1 span {
+      display: block;
+      font-family: 'SourceHanSerifTW';
+      font-size: 14vmax;
+      line-height: 100%;
+    }
+    address {
+      font-style: normal;
+      font-size: 14px;
+      padding: 15px 0;
+      text-align: center;
+      color: #878b99;
+    }
+    @media(orientation: portrait) and (max-width: 640px) {
+      
+      h1 span {
+        writing-mode: vertical-lr;
+        writing-mode: tb-rl;
+        letter-spacing: -.33em;
+      }
+    }
+  </style>
+</head>
+<body>
+	<h1><small>我每天都</small><span id="state">坐以待斃</span></h1>
+  <address>&copy;2020 <a href="https://xio.ng">熊宝</a></address>
+  <font style="display:none;font-family: 'SourceHanSerifTW';">劃水摸魚,帶薪大便,無聊發呆,混吃等死,虛度光陰,無所事事,虛度年華,無精打采,行屍走肉,吊兒郎當,漫不經心,好逸惡勞,遊手好閑,碌碌無為,悲觀失望,得過且過,魂不守舍,渾渾噩噩,四大皆空,消極怠慢,心灰意冷,與世無爭,坐以待斃</font>
+  <script>
+    var states = [
+      {
+        word:'劃水摸魚',
+        audio:'hua-shui-mo-yu',
+        pinyin:'huá shuǐ mō yú'
+      },
+      {
+        word:'帶薪大便',
+        audio:'dai-xin-da-bian',
+        pinyin:'dài xīn dà biàn'
+      },
+      {
+        word:'無聊發呆',
+        audio:'wu-liao-fa-dai',
+        pinyin:'wú liáo fā dāi'
+      },
+      {
+        word:'混吃等死',
+        audio:'hun-chi-deng-si',
+        pinyin:'hún chī děng sǐ'
+      },
+      {
+        word:'虛度光陰',
+        audio:'xu-du-guang-yin',
+        pinyin:'xū dù guāng yīn'
+      },
+      {
+        word:'無所事事',
+        audio:'wu-suo-shi-shi',
+        pinyin:'wú suǒ shì shì'
+      },
+      {
+        word:'虛度年華',
+        audio:'xu-du-nian-hua',
+        pinyin:'xū dù nián huá'
+      },
+      {
+        word:'無精打采',
+        audio:'wu-jing-da-cai',
+        pinyin:'wú jīng dǎ cǎi'
+      },
+      {
+        word:'行屍走肉',
+        audio:'xing-shi-zou-rou',
+        pinyin:'xíng shī zǒu ròu'
+      },
+      {
+        word:'吊兒郎當',
+        audio:'diao-er-lang-dang',
+        pinyin:'diào ér láng dāng'
+      },
+      {
+        word:'漫不經心',
+        audio:'man-bu-jing-xin',
+        pinyin:'màn bù jīng xīn'
+      },
+      {
+        word:'好逸惡勞',
+        audio:'hao-yi-wu-lao',
+        pinyin:'hào yì wù láo'
+      },
+      {
+        word:'遊手好閑',
+        audio:'you-shou-hao-xian',
+        pinyin:'yóu shǒu hào xián'
+      },
+      {
+        word:'碌碌無為',
+        audio:'lu-lu-wu-wei',
+        pinyin:'lù lù wú wéi'
+      },
+      {
+        word:'悲觀失望',
+        audio:'bei-guan-shi-wang',
+        pinyin:'bēi guān shī wàng'
+      },
+      {
+        word:'得過且過',
+        audio:'de-guo-qie-guo',
+        pinyin:'dé guò qiě guò'
+      },
+      {
+        word:'魂不守舍',
+        audio:'hun-bu-shou-she',
+        pinyin:'hún bù shǒu shè'
+      },
+      {
+        word:'渾渾噩噩',
+        audio:'hun-hun-e-e',
+        pinyin:'hún hún è è'
+      },
+      {
+        word:'四大皆空',
+        audio:'si-da-jie-kong',
+        pinyin:'sì dà jiē kōng'
+      },
+      {
+        word:'消極怠慢',
+        audio:'xiao-ji-dai-man',
+        pinyin:'xiāo jí dài màn'
+      },
+      {
+        word:'心灰意冷',
+        audio:'xin-hui-yi-leng',
+        pinyin:'xīn huī yì lěng'
+      },
+      {
+        word:'與世無爭',
+        audio:'yu-shi-wu-zheng',
+        pinyin:'yǔ shì wú zhēng'
+      },
+      {
+        word:'坐以待斃',
+        audio:'zuo-yi-dai-bi',
+        pinyin:'zuò yǐ dài bì'
+      }
+    ];
+
+    var state = states[Math.floor(Math.random() * states.length)];
+    var _state = document.getElementById('state');
+    var iframe = document.createElement('iframe');
+
+    _state.innerText = state.word;
+    iframe.id='audio';
+    iframe.style.display='none';
+    iframe.allow = 'autoplay'
+    iframe.src='https://audio.everyday.im/'+state.audio+'.mp3';
+    if (iframe.attachEvent){
+      iframe.attachEvent("onload", function(){
+        console.log('Load Success.')
+      });
+    } else {
+      iframe.onload = function(){
+        console.log('Load Success.')
+      };
+    }
+    document.body.appendChild(iframe);
+  </script>
+</body>
+</html>
