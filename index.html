@@ -64,7 +64,6 @@
       h1 span {
         writing-mode: vertical-lr;
         writing-mode: tb-rl;
-        letter-spacing: -.33em;
       }
     }
   </style>
@@ -200,7 +199,7 @@
     iframe.id='audio';
     iframe.style.display='none';
     iframe.allow = 'autoplay'
-    iframe.src='https://audio.everyday.im/'+state.audio+'.mp3';
+    iframe.src='https://audio.server.run/'+state.audio+'.mp3';
     if (iframe.attachEvent){
       iframe.attachEvent("onload", function(){
         console.log('Load Success.')
